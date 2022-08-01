@@ -12,14 +12,30 @@ function App() {
     { url: "https://source.unsplash.com/random/6" },
   ]);
 
+  const getNewImg = () => {
+    setImages([
+      ...images,
+      {
+        url: `https://source.unsplash.com/random/${Math.floor(
+          Math.random() * 100
+        )}`,
+      },
+    ]);
+  };
+
+  const removeImg = () => {
+    setImages(images.slice(0, -1));
+  };
+  console.log(images);
+
   return (
     <section className="hero">
       <div className="cardContainer">
         <Card images={images} />
       </div>
       <div className="btnContainer">
-        <button>Remove</button>
-        <button>Add</button>
+        <button onClick={removeImg}>Remove</button>
+        <button onClick={getNewImg}>Add</button>
       </div>
     </section>
   );
